@@ -1,7 +1,10 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    hostname:
+      enabled: False
   tasks:
-    - name: "Include config_ubuntu"
+    - name: Include config_ubuntu
       include_role:
-        name: "config_ubuntu"
+        name: config_ubuntu

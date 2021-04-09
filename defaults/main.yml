@@ -1,2 +1,24 @@
 ---
 # defaults file for config_ubuntu
+ssh_pubkey_path: /home/rocha/.ssh/aws_educate.pub
+
+hostname:
+  enabled: True
+  name: test_server
+
+docker:
+  enabled: True
+  requirements:
+    - apt-transport-https
+    - ca-certificates 
+    - curl 
+    - gnupg-agent 
+    - software-properties-common
+    - wget
+
+python:
+  enabled: True
+  requirements:
+    - python3-pip
+    - python3-setuptools
+    - virtualenv
