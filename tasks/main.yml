@@ -33,6 +33,7 @@
     apt:
       name: "{{ item }}"
       state: present
+      update_cache: yes
     loop: "{{ python.requirements }}"
     when: python.requirements is defined
 
