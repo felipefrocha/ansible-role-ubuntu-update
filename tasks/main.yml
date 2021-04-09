@@ -18,6 +18,7 @@
 - name: Docker Requirements
   debug:
     msg: "{{ docker.requirements }}"
+  when: docker.requirements is defined
 
 - name: Add Docker requirements
   apt:
@@ -33,6 +34,8 @@
       name: "{{ item }}"
       state: present
     loop: "{{ python.requirements }}"
+    when: python.requirements is defined
+
 
   - name: Update pip
     shell: pip3 install -U pip
