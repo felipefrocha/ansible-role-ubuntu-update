@@ -17,6 +17,7 @@ docker:
     - wget
     - conntrack
     - selinux-utils
+    - htop
 
 python:
   enabled: True
