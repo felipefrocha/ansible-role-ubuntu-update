@@ -15,6 +15,7 @@ docker:
     - gnupg-agent 
     - software-properties-common
     - wget
+    - conntrack
 
 python:
   enabled: True
