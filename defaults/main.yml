@@ -16,6 +16,7 @@ docker:
     - software-properties-common
     - wget
     - conntrack
+    - selinux-utils
 
 python:
   enabled: True
