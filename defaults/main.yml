@@ -6,9 +6,8 @@ hostname:
   enabled: True
   name: testserver
 
-docker:
-  enabled: True
-  requirements:
+ubuntu:
+  packages:
     - apt-transport-https
     - ca-certificates 
     - curl 
@@ -21,7 +20,10 @@ docker:
 
 python:
   enabled: True
-  requirements:
+  packages:
     - python3-pip
     - python3-setuptools
     - virtualenv
+  requirements:
+    - pip
+    - anisble

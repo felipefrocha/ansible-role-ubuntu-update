@@ -15,36 +15,39 @@
   debug:
     msg: "{{ current_user.stdout }}"
 
-- name: Docker Requirements
-  debug:
-    msg: "{{ docker.requirements }}"
-  when: docker.requirements is defined
-
-- name: Add Docker requirements
+- name: Install packages
   apt:
-    name: "{{ item }}"
+    name: "{{ ubuntu.packages }}"
     state: present
     update_cache: yes
-  loop: "{{ docker.requirements }}"
-  when: docker.enabled
+
+- name: Installed packages
+  debug:
+    msg: "{{ ubuntu.packages }}"
 
 - block:
   - name: Install Python3
     apt:
-      name: "{{ item }}"
+      name: "{{ python.packages }}"
       state: present
       update_cache: yes
-    loop: "{{ python.requirements }}"
     when: python.requirements is defined
 
+  - name: Installed Python packages
+    debug:
+      msg: "{{ python.packages }}"
 
-  - name: Update pip
-    shell: pip3 install -U pip
-    changed_when: False
+  - name: Install/upgrade Pip Packages
+    pip:
+      name: "{{ python.requirements }}"
+      extra_args: -U
+  - name: Installed Pip packages
+    debug:
+      msg: "{{ python.requirements }}"
   when: python.enabled
 
 
-- name: ensure ntpd is at the latest version
+- name: Ensure ntpd is at the latest version
   apt: 
     name: ntp
     state: latest
@@ -55,6 +58,8 @@
 - name: Upgrade the OS (apt-get full-upgrade)
   apt:
     upgrade: full
+    autoremove: yes
+    autoclean: yes
 
 - name: Set authorized key taken from file
   ansible.posix.authorized_key:
