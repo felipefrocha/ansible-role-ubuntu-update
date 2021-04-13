@@ -3,7 +3,7 @@
 ssh_pubkey_path: /home/rocha/.ssh/aws_educate.pub
 
 hostname:
-  enabled: True
+  enabled: False
   name: testserver
 
 ubuntu:
