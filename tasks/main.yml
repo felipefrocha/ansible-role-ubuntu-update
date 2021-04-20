@@ -66,3 +66,12 @@
     user: "{{ current_user.stdout }}"
     state: present
     key: "{{ lookup('file', ssh_pubkey_path) }}"
+
+
+- name: Template for Networking Config
+  ansible.builtin.template:
+    src: 99-configmtu.j2
+    dest: /etc/netplan/99-configmtu.yaml
+    owner: root
+    group: root
+    mode: 0644
