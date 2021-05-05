@@ -67,6 +67,11 @@
     state: present
     key: "{{ lookup('file', ssh_pubkey_path) }}"
 
+- name: Create netplan directories if they do not exist
+  file:
+    path: /etc/netplan
+    state: directory
+    mode: '0644'
 
 - name: Template for Networking Config
   ansible.builtin.template:
